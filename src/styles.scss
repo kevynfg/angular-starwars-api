@@ -1,5 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 :root {
   --color-dark-blue: #2b2d42;
@@ -7,36 +11,10 @@
   --color-ice: #edf2f4;
   --color-light-red: #ef233c;
   --color-dark-red: #d90429;
-
-  font-size: 60%;
 }
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
 body,
-#root {
+html {
   height: 100vh;
-}
-
-body,
-input,
-button,
-textarea {
-  font: 500 1.6rem Poppins;
-}
-
-.container {
-  width: 90vw;
-  max-width: 700px;
-}
-
-@media (min-width: 700px) {
-  :root {
-    font-size: 62.5%;
-  }
+  width: 100vw;
+  background-color: var(--color-dark-blue);
 }

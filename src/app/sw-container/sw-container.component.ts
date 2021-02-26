@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SwApiService } from './sw-api.service';
 import {
+  catchError,
   debounceTime,
   distinctUntilChanged,
   filter,
@@ -10,7 +11,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
+import { EMPTY, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sw-container',
@@ -21,11 +22,11 @@ export class SwContainerComponent implements OnInit {
   readonly API_PAGINATION = 'https://swapi.dev/api/people/?page=';
   jsonField_URL = 'format=json';
   readonly API_SEARCH = 'https://swapi.dev/api/people/';
-  // @Input() swCharacter: any;
   inputSearch = new FormControl();
   resultInput$ = this.inputSearch.valueChanges;
   result$!: Observable<any>;
   total!: number;
+  fillHomePageCharacters: any[] = [];
 
   constructor(private swService: SwApiService, private http: HttpClient) {}
 
@@ -33,7 +34,7 @@ export class SwContainerComponent implements OnInit {
     this.result$ = this.inputSearch.valueChanges.pipe(
       map((value) => value.trim()),
       filter((value) => value.length > 1),
-      debounceTime(500),
+      debounceTime(800),
       distinctUntilChanged(),
       switchMap((value) =>
         this.http.get('https://swapi.dev/api/people/', {
@@ -44,7 +45,17 @@ export class SwContainerComponent implements OnInit {
         })
       ),
       tap((response: any) => (this.total = response.count)),
-      map((res: any) => res.results)
+      map((res: any) => res.results),
+      catchError((error) => {
+        console.error(error);
+        return EMPTY;
+      })
     );
+
+    this.swService.getCharacters().subscribe((swCharacters: any) => {
+      this.fillHomePageCharacters = swCharacters;
+    });
   }
+
+  ngOnDestroy() {}
 }
