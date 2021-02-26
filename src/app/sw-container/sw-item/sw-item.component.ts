@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./sw-item.component.scss'],
 })
 export class SwItemComponent implements OnInit {
-  @Input() swCharacter = 'Anakin Skywalker';
+  @Input() swCharacter: any;
 
   constructor() {}
 

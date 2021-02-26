@@ -8,6 +8,7 @@ import { SwContainerComponent } from './sw-container.component';
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule, swRoutingModule, FormsModule],
   declarations: [SwItemComponent, SwContainerComponent],
+
   exports: [SwContainerComponent],
 })
 export class SwContainerModule {}

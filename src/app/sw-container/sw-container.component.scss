@@ -12,7 +12,11 @@
   overflow: hidden;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+p {
   color: var(--color-ice);
   margin-bottom: 15px;
 }
@@ -20,6 +24,7 @@ h1 {
 input {
   height: 3rem;
   width: 35rem;
+  margin-bottom: 1rem;
 }
 
 .search-query {
@@ -27,4 +32,8 @@ input {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.search-result {
+  color: var(--color-ice);
 }

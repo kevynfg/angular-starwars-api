@@ -12,6 +12,5 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class swRoutingModule {}

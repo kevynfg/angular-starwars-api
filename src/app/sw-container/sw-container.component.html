@@ -1,10 +1,17 @@
 <main class="page-landing">
   <div class="search-query">
     <h1>Busque pelo seu personagem favorito</h1>
-    <input type="text" />
-    <app-sw-item [swCharacter]="swCharacter"></app-sw-item>
+    <input [formControl]="inputSearch" type="text" />
+    <div *ngIf="result$ | async; else elseBlock">
+      <h3>{{ total }} Resultados na busca</h3>
+      <div class="search-result" *ngFor="let swCharacter of result$ | async">
+        <app-sw-item [swCharacter]="swCharacter.name"></app-sw-item>
+      </div>
+    </div>
   </div>
 </main>
 <div>
   <router-outlet></router-outlet>
 </div>
+
+<ng-template #elseBlock><p>Não há resultados</p></ng-template>
