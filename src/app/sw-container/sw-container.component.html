@@ -1,22 +1,21 @@
 <div class="main-container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>Busque pelo seu personagem favorito</h1>
-      <input [formControl]="inputSearch" type="text" required />
-      <ng-template #elseBlock><p>Não há resultados</p></ng-template>
-      <h3>{{ total }} Resultados na busca</h3>
-    </div>
-  </div>
-  <div
-    class="search-result"
-    *ngIf="result$ | async as character; else elseBlock"
-  >
-    <div class="test" *ngFor="let swCharacter of character">
-      <app-sw-item [swCharacter]="swCharacter.name"></app-sw-item>
-    </div>
+  <h1 class="grid-title">Busque pelo seu personagem favorito</h1>
+  <input class="grid-input" [formControl]="inputSearch" type="text" required />
+</div>
+
+<h3 class="grid-search-result">{{ total }} Resultados na busca</h3>
+<div
+  class="card-wrapper div-box"
+  *ngIf="result$ | async as character; else elseBlock"
+>
+  <div *ngFor="let swCharacter of character">
+    <app-sw-item [swCharacter]="swCharacter.name"></app-sw-item>
   </div>
 </div>
 
+<ng-template #elseBlock
+  ><div><p class="grid-p">Não há resultados</p></div></ng-template
+>
 <div>
   <router-outlet></router-outlet>
 </div>

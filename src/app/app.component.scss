@@ -5,3 +5,21 @@
   --color-light-red: #ef233c;
   --color-dark-red: #d90429;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
