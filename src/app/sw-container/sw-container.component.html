@@ -3,12 +3,13 @@
   <input class="grid-input" [formControl]="inputSearch" type="text" required />
 </div>
 
-<h3 class="grid-search-result">{{ total }} Resultados na busca</h3>
 <div
   class="card-wrapper div-box"
   *ngIf="result$ | async as character; else elseBlock"
 >
-  <div *ngFor="let swCharacter of character">
+  <h3 class="grid-search-result">{{ total }} Resultados na busca</h3>
+
+  <div class="grid-card" *ngFor="let swCharacter of character">
     <app-sw-item [swCharacter]="swCharacter.name"></app-sw-item>
   </div>
 </div>
