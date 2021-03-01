@@ -27,6 +27,7 @@ export class SwContainerComponent implements OnInit {
   result$!: Observable<any>;
   total!: number;
   fillHomePageCharacters: any[] = [];
+  isResult: boolean = false;
 
   constructor(private swService: SwApiService, private http: HttpClient) {}
 
@@ -45,9 +46,13 @@ export class SwContainerComponent implements OnInit {
         })
       ),
       tap((response: any) => (this.total = response.count)),
-      map((res: any) => res.results),
+      map((res: any) => {
+        this.isResult = true;
+        return res.results;
+      }),
       catchError((error) => {
         console.error(error);
+        this.isResult = false;
         return EMPTY;
       })
     );

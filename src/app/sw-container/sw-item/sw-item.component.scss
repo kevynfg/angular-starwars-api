@@ -1,12 +1,10 @@
-.search-result {
-  color: var(--color-ice);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-}
-
 .card-wrapper {
   max-width: 320px;
   min-width: 220px;
+}
+
+p,
+h5,
+span {
+  color: var(--color-ice);
 }
