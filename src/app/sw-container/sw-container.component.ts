@@ -11,7 +11,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { EMPTY, Observable, Subscription } from 'rxjs';
+import { EMPTY, Observable, of, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sw-container',
@@ -23,11 +23,10 @@ export class SwContainerComponent implements OnInit {
   jsonField_URL = 'format=json';
   readonly API_SEARCH = 'https://swapi.dev/api/people/';
   inputSearch = new FormControl();
-  resultInput$ = this.inputSearch.valueChanges;
   result$!: Observable<any>;
   total!: number;
-  fillHomePageCharacters: any[] = [];
-  isResult: boolean = false;
+  hasResult: boolean = false;
+  exampleSwCharacters!: Observable<any>;
 
   constructor(private swService: SwApiService, private http: HttpClient) {}
 
@@ -47,18 +46,19 @@ export class SwContainerComponent implements OnInit {
       ),
       tap((response: any) => (this.total = response.count)),
       map((res: any) => {
-        this.isResult = true;
+        this.hasResult = true;
         return res.results;
       }),
       catchError((error) => {
         console.error(error);
-        this.isResult = false;
+        this.hasResult = false;
         return EMPTY;
       })
     );
 
     this.swService.getCharacters().subscribe((swCharacters: any) => {
-      this.fillHomePageCharacters = swCharacters;
+      this.exampleSwCharacters = swCharacters.results;
+      console.log(this.hasResult);
     });
   }
 

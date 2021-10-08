@@ -1,25 +1,19 @@
-<div class="main-container">
-  <h1>Busque pelo seu personagem favorito</h1>
-  <input [formControl]="inputSearch" type="text" required />
-
+<div class="main-container" style="margin-top: 10px;">
+  <div class="search-bar">
+    <h1>Busque pelo seu personagem favorito</h1>
+    <input [formControl]="inputSearch" type="text" required />
+  </div>
   <div class="card-wrapper" *ngIf="result$ | async as character">
-    <div *ngIf="isResult != true">Não há resultados</div>
-    <h3 class="cards-result" *ngIf="isResult">
+    <h3 class="cards-result" *ngIf="hasResult">
       <span>{{ total }} Resultados na busca</span>
     </h3>
 
-    <div *ngFor="let swCharacter of character">
-      <app-sw-item [swCharacter]="swCharacter"></app-sw-item>
+    <div *ngIf="hasResult">
+      <div *ngFor="let swCharacter of character">
+        <app-sw-item [swCharacter]="swCharacter"></app-sw-item>
+      </div>
     </div>
   </div>
-</div>
-
-<div
-  class="seemore-footer"
-  *ngIf="total"
-  style="display: flex; justify-content: center; align-items: center"
->
-  <a href="#"><p>Ver mais...</p></a>
 </div>
 
 <div>

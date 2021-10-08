@@ -1,11 +1,11 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SwContainerComponent } from './sw-container.component';
+import { SwDashboardComponent } from './sw-dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: SwContainerComponent,
+    component: SwDashboardComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class swRoutingModule {}
+export class swDashboardRoutingModule {}
